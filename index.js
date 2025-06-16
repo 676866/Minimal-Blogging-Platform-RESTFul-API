@@ -1,12 +1,11 @@
 import express from 'express';
-const app = express ()
+import router from './routes/user.js';
 
-let port; 
-if (process.env.port){
-port = process.env.port
-}else{
-    port = 5000;
-}
-app.listen(5000,()=>{
-    console.log(`App running on port 5000`);
-}) 
+const app = express();
+app.use(express.json());
+app.use('/api', router);
+
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}`);
+});
